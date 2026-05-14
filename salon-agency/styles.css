@@ -18,7 +18,7 @@ body {
     background-color: var(--bg-color);
     color: var(--text-color);
     font-family: var(--font-body);
-    overflow-x: hidden;
+    overflow-x: clip;
     cursor: none; /* Hide default cursor */
 }
 
@@ -813,7 +813,7 @@ h1, h2, h3 {
 @media (max-width: 768px) {
 
     /* --- Global --- */
-    html, body { overflow-x: hidden; }
+    body { overflow-x: clip; }
     .cursor-dot, .cursor-ring { display: none !important; }
     .navbar {
         padding: 1.2rem 1.5rem;
