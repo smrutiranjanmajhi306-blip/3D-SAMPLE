@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AURA | Premium Salon & Creative Agency</title>
+    <meta name="description" content="Aura is a high-end salon and creative styling agency offering avant-garde hair design and immersive spa experiences.">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&family=Syne:wght@400;700;800&display=swap" rel="stylesheet">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Custom Cursor -->
+    <div class="cursor-dot"></div>
+    <div class="cursor-ring"></div>
+
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="logo">AURA</div>
+        <ul class="nav-links">
+            <li><a href="#work" class="hover-target">Work</a></li>
+            <li><a href="#about" class="hover-target">About</a></li>
+            <li><a href="#contact" class="hover-target">Contact</a></li>
+        </ul>
+    </nav>
+
+    <!-- Hero Section (Multi-Layer Parallax Architecture) -->
+    <section class="hero" id="hero">
+        <div class="hero-3d-stage">
+            
+            <!-- Layer 0: Background -->
+            <div class="parallax-layer-0 hero-layer" data-velocity="0.2">
+                <canvas id="hero-canvas"></canvas>
+            </div>
+
+            <!-- Layer 1: Mid-ground Typography -->
+            <div class="parallax-layer-1 hero-layer" data-velocity="1.2">
+                <h1 class="massive-text reveal-text"><span>A U R A</span></h1>
+                <p class="subtitle fade-up delay-1">Avant-garde styling & premium experiences</p>
+            </div>
+
+            <!-- Layer 2: CENTER — Circuit vertical star (spins on Y-axis with glow) -->
+            <div class="parallax-layer-2 hero-layer center-element-layer" data-velocity="1.0">
+                <img src="assets/elem-circuit-star.png" alt="Center Star" class="center-vertical-element">
+            </div>
+
+            <!-- Layer 3: SIDES — cross-shape left (behind A), blurred flame right -->
+            <div class="parallax-layer-3 hero-layer side-elements-layer" data-velocity="1.6">
+                <img src="assets/elem-cross-shape.png" alt="Left Shape"  class="blue-side-element left-shape">
+                <img src="assets/elem-flame.png"       alt="Right Flame" class="blue-side-element right-shape side-blurred">
+            </div>
+
+        </div>
+
+        <div class="scroll-indicator fade-up delay-2">
+            <span>Scroll</span>
+            <div class="line"></div>
+        </div>
+    </section>
+
+    <!-- About / Stats Section -->
+    <section id="about" class="about section-padding observer-trigger">
+        <div class="parallax-text-container">
+            <div class="parallax-bg-text" data-speed="0.1">AURA SALON AURA SALON</div>
+        </div>
+        <div class="about-3d-scene" id="about3dScene">
+            <div class="about-content about-card-reveal" id="aboutTiltCard">
+                <h2 class="slide-in-left">Redefining Beauty</h2>
+                <p class="fade-up">We merge the precision of a creative agency with the elegance of a luxury salon. Our experts curate personalized aesthetics that challenge the ordinary and celebrate individuality.</p>
+                
+                <div class="stats-container">
+                    <div class="stat-item fade-up">
+                        <span class="counter" data-target="15">0</span>
+                        <span class="stat-label">Master Stylists</span>
+                    </div>
+                    <div class="stat-item fade-up delay-1">
+                        <span class="counter" data-target="1200">0</span>
+                        <span class="stat-label">Transformations</span>
+                    </div>
+                    <div class="stat-item fade-up delay-2">
+                        <span class="counter" data-target="24">0</span>
+                        <span class="stat-label">Awards Won</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 3D Floating decorative orbs inside about section -->
+            <div class="about-orb orb-1"></div>
+            <div class="about-orb orb-2"></div>
+            <div class="about-orb orb-3"></div>
+        </div>
+    </section>
+
+    <!-- Work / Portfolio Section (Horizontal Scroll) -->
+    <section id="work" class="work-section">
+        <div class="work-sticky-container">
+            <h2 class="work-title">Featured Creations</h2>
+            <div class="work-carousel">
+                <div class="work-card hover-target">
+                    <div class="card-inner">
+                        <img src="assets/salon_model_1778736105710.png" alt="Neon Avant-Garde Style">
+                        <div class="card-overlay">
+                            <h3>Neon Vanguard</h3>
+                            <p>Avant-garde styling</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="work-card hover-target">
+                    <div class="card-inner">
+                        <img src="assets/salon_interior_1778736085058.png" alt="Salon Interior">
+                        <div class="card-overlay">
+                            <h3>The Sanctuary</h3>
+                            <p>Premium atmosphere</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="work-card hover-target">
+                    <div class="card-inner">
+                        <img src="assets/salon_spa_1778736125736.png" alt="Spa Aesthetic">
+                        <div class="card-overlay">
+                            <h3>Aqua Zen</h3>
+                            <p>Immersive spa</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="work-card hover-target">
+                    <div class="card-inner">
+                        <img src="assets/salon_tools_1778736141134.png" alt="Styling Shears">
+                        <div class="card-overlay">
+                            <h3>Precision</h3>
+                            <p>Mastercraft tools</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Marquee Section -->
+    <section class="marquee-section">
+        <div class="marquee-inner">
+            <span>AURA SALON &bull; AVANT-GARDE &bull; PREMIUM CARE &bull; CREATIVE AGENCY &bull; AURA SALON &bull; AVANT-GARDE &bull; PREMIUM CARE &bull; CREATIVE AGENCY &bull;</span>
+        </div>
+    </section>
+
+    <!-- Image Reveal Section -->
+    <section class="image-reveal-section">
+        <div class="reveal-sticky">
+            <div class="reveal-image-container">
+                <img src="assets/salon_reveal_4k_1778738611923.png" alt="Aura Signature Style">
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Horizontal Parallax -->
+    <section id="services" class="services-section">
+        <div class="service-row" data-direction="1">
+            <h2>HAIR DESIGN &bull; COLOR ALCHEMY &bull; HAIR DESIGN &bull; COLOR ALCHEMY</h2>
+        </div>
+        <div class="service-row" data-direction="-1">
+            <h2 class="outline-text">SCALP TREATMENTS &bull; SPA EXPERIENCES &bull; SCALP TREATMENTS &bull; SPA EXPERIENCES</h2>
+        </div>
+        <div class="service-row" data-direction="1">
+            <h2>EDITORIAL STYLING &bull; AVANT-GARDE &bull; EDITORIAL STYLING &bull; AVANT-GARDE</h2>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer id="contact" class="footer observer-trigger">
+        <div class="footer-content">
+            <h2 class="fade-up">Ready for a transformation?</h2>
+            <a href="mailto:hello@aurasalon.com" class="magnetic-btn hover-target fade-up delay-1">
+                <span class="btn-text">Book Appointment</span>
+            </a>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 AURA Salon. All Rights Reserved.</p>
+            <div class="social-links">
+                <a href="#" class="hover-target">Instagram</a>
+                <a href="#" class="hover-target">Twitter</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Lenis Smooth Scroll CDN -->
+    <script src="https://cdn.jsdelivr.net/gh/studio-freight/lenis@1.0.29/bundled/lenis.min.js"></script>
+    <!-- Custom JS -->
+    <script src="script.js"></script>
+</body>
+</html>
