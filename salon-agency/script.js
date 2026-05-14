@@ -256,76 +256,68 @@ const centerRotatingElement = document.querySelector('.rotating-center-element')
 lenis.on('scroll', (e) => {
     const scrollY = e.scroll;
     
-    // Multi-Layer Hero Parallax Sandwich
-    heroLayers.forEach(layer => {
-        const velocity = parseFloat(layer.getAttribute('data-velocity'));
-        // Formula: translateY = scrollY * (1 - velocity)
-        const yPos = scrollY * (1 - velocity);
-        
-        // If foreground (v > 1), scale it up slightly as it moves
-        let scale = 1;
-        if (velocity > 1.0) {
-            scale = 1 + (scrollY * 0.0005);
-        }
-        
-        layer.style.transform = `translateY(${yPos}px) scale(${scale})`;
-    });
+    // --- DESKTOP ONLY scroll effects ---
+    if (!isMobile) {
 
-    // Other Parallax Layers
-    parallaxLayers.forEach(layer => {
-        const speed = layer.getAttribute('data-speed');
-        const yPos = -(scrollY * speed);
-        layer.style.transform = `translateY(${yPos}px)`;
-    });
-    
-    // Horizontal Scroll (Work Section)
-    if (workSection && workCarousel) {
-        const rect = workSection.getBoundingClientRect();
-        if (rect.top <= 0 && rect.bottom >= window.innerHeight) {
-            const progress = Math.abs(rect.top) / (rect.height - window.innerHeight);
-            const maxScroll = workCarousel.scrollWidth - window.innerWidth + window.innerWidth * 0.2; 
-            workCarousel.style.transform = `translateX(-${progress * maxScroll}px)`;
-        }
-    }
+        // Multi-Layer Hero Parallax Sandwich
+        heroLayers.forEach(layer => {
+            const velocity = parseFloat(layer.getAttribute('data-velocity'));
+            const yPos = scrollY * (1 - velocity);
+            let scale = 1;
+            if (velocity > 1.0) scale = 1 + (scrollY * 0.0005);
+            layer.style.transform = `translateY(${yPos}px) scale(${scale})`;
+        });
 
-    // Image Reveal Scale
-    if (revealSection && revealImage && revealImgInside) {
-        const rect = revealSection.getBoundingClientRect();
-        if (rect.top <= 0 && rect.bottom >= window.innerHeight) {
-            const progress = Math.abs(rect.top) / (rect.height - window.innerHeight);
-            const currentWidth = 30 + (progress * 70);
-            const currentHeight = 40 + (progress * 60);
-            const currentRadius = 20 - (progress * 20);
-            
-            revealImage.style.width = `${currentWidth}vw`;
-            revealImage.style.height = `${currentHeight}vh`;
-            revealImage.style.borderRadius = `${currentRadius}px`;
-            
-            const imgScale = 1.2 - (progress * 0.2);
-            revealImgInside.style.transform = `scale(${imgScale})`;
-        } else if (rect.top > 0) {
-            // Reset before it enters
-            revealImage.style.width = `30vw`;
-            revealImage.style.height = `40vh`;
-            revealImage.style.borderRadius = `20px`;
-            revealImgInside.style.transform = `scale(1.2)`;
+        // Other Parallax Layers
+        parallaxLayers.forEach(layer => {
+            const speed = layer.getAttribute('data-speed');
+            const yPos = -(scrollY * speed);
+            layer.style.transform = `translateY(${yPos}px)`;
+        });
+
+        // Horizontal Scroll (Work Section)
+        if (workSection && workCarousel) {
+            const rect = workSection.getBoundingClientRect();
+            if (rect.top <= 0 && rect.bottom >= window.innerHeight) {
+                const progress = Math.abs(rect.top) / (rect.height - window.innerHeight);
+                const maxScroll = workCarousel.scrollWidth - window.innerWidth + window.innerWidth * 0.2;
+                workCarousel.style.transform = `translateX(-${progress * maxScroll}px)`;
+            }
         }
-    }
-    
-    // Services Horizontal Parallax
-    if (serviceSection && serviceRows.length) {
-        const rect = serviceSection.getBoundingClientRect();
-        if (rect.top < window.innerHeight && rect.bottom > 0) {
-            const scrolled = window.innerHeight - rect.top;
-            serviceRows.forEach(row => {
-                const direction = parseInt(row.getAttribute('data-direction') || 1);
-                const speed = 0.5;
-                // Move text horizontally
-                row.style.transform = `translateX(${(scrolled * speed * direction) - 300}px)`; 
-                // -300px just sets a starting offset so it looks better
-            });
+
+        // Image Reveal Scale
+        if (revealSection && revealImage && revealImgInside) {
+            const rect = revealSection.getBoundingClientRect();
+            if (rect.top <= 0 && rect.bottom >= window.innerHeight) {
+                const progress = Math.abs(rect.top) / (rect.height - window.innerHeight);
+                const currentWidth  = 30 + (progress * 70);
+                const currentHeight = 40 + (progress * 60);
+                const currentRadius = 20 - (progress * 20);
+                revealImage.style.width        = `${currentWidth}vw`;
+                revealImage.style.height       = `${currentHeight}vh`;
+                revealImage.style.borderRadius = `${currentRadius}px`;
+                revealImgInside.style.transform = `scale(${1.2 - (progress * 0.2)})`;
+            } else if (rect.top > 0) {
+                revealImage.style.width        = `30vw`;
+                revealImage.style.height       = `40vh`;
+                revealImage.style.borderRadius = `20px`;
+                revealImgInside.style.transform = `scale(1.2)`;
+            }
         }
-    }
+
+        // Services Horizontal Parallax
+        if (serviceSection && serviceRows.length) {
+            const rect = serviceSection.getBoundingClientRect();
+            if (rect.top < window.innerHeight && rect.bottom > 0) {
+                const scrolled = window.innerHeight - rect.top;
+                serviceRows.forEach(row => {
+                    const direction = parseInt(row.getAttribute('data-direction') || 1);
+                    row.style.transform = `translateX(${(scrolled * 0.5 * direction) - 300}px)`;
+                });
+            }
+        }
+
+    } // end !isMobile
 });
 
 // --- Counters Animation ---

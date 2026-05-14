@@ -797,6 +797,7 @@ h1, h2, h3 {
 
     /* --- Global --- */
     html, body { overflow-x: hidden; }
+    .cursor-dot, .cursor-ring { display: none !important; }
     .navbar {
         padding: 1.2rem 1.5rem;
     }
@@ -811,10 +812,10 @@ h1, h2, h3 {
 
     /* --- Hero --- */
     .hero {
-        perspective: none; /* Disable 3D perspective on mobile */
+        perspective: none;
     }
     .hero-3d-stage {
-        transform: none !important; /* Disable mouse parallax rotation */
+        transform: none !important;
     }
     .massive-text {
         font-size: clamp(3rem, 18vw, 6rem);
@@ -829,75 +830,90 @@ h1, h2, h3 {
         text-align: center;
         white-space: normal;
     }
-    .scroll-indicator {
-        bottom: 1.5rem;
-    }
-
-    /* Center element: smaller on mobile */
-    .center-vertical-element {
-        height: 55vh;
-    }
-
-    /* Side elements: smaller, push further to edges */
-    .blue-side-element {
-        width: 14vw;
-        opacity: 0.35;
-    }
+    .scroll-indicator { bottom: 1.5rem; }
+    .center-vertical-element { height: 55vh; }
+    .blue-side-element { width: 14vw; opacity: 0.35; }
     .left-shape  { left: 0; top: 10%; }
     .right-shape { right: 0; top: 20%; }
 
     /* --- About section --- */
-    .about-3d-scene {
-        padding: 0 1rem;
-    }
+    .about-3d-scene { padding: 0 1rem; }
     .about-content {
         padding: 2.5rem 1.5rem;
         border-radius: 16px;
-        transform: none !important; /* Disable 3D tilt on mobile */
+        transform: none !important;
     }
-    .about h2 {
-        font-size: clamp(1.6rem, 7vw, 2.5rem);
-    }
-    .about p {
-        font-size: 1rem;
-        line-height: 1.6;
-    }
+    .about h2 { font-size: clamp(1.6rem, 7vw, 2.5rem); }
+    .about p  { font-size: 1rem; line-height: 1.6; }
     .stats-container {
         flex-direction: row;
         flex-wrap: wrap;
         gap: 1.5rem;
         justify-content: center;
     }
-    .stat-item {
-        flex: 1 1 40%;
-    }
-    .counter {
-        font-size: clamp(2rem, 10vw, 3rem);
-    }
-    .orb-1, .orb-2, .orb-3 {
-        display: none; /* Orbs off on mobile for performance */
-    }
+    .stat-item { flex: 1 1 40%; }
+    .counter   { font-size: clamp(2rem, 10vw, 3rem); }
+    .orb-1, .orb-2, .orb-3 { display: none; }
 
-    /* --- Work cards --- */
-    .work-sticky-container { padding-left: 1.5rem; }
+    /* --- Work section: REMOVE the 400vh pin on mobile, let it flow normally --- */
+    .work-section {
+        height: auto !important;
+        min-height: unset;
+    }
+    .work-sticky-container {
+        position: relative !important;
+        top: auto !important;
+        height: auto !important;
+        overflow: visible !important;
+        padding: 2rem 1.5rem;
+    }
+    .work-carousel {
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+        padding-bottom: 1rem;
+        padding-right: 1.5rem;
+        transform: none !important;
+        scrollbar-width: none;
+    }
+    .work-carousel::-webkit-scrollbar { display: none; }
     .work-card {
         flex: 0 0 280px;
         height: 360px;
     }
     .work-title {
         font-size: clamp(1.5rem, 8vw, 3rem);
-        padding-left: 1.5rem;
+        padding-left: 0;
+        margin-bottom: 1.5rem;
     }
 
-    /* --- Image Reveal --- */
+    /* --- Image Reveal: REMOVE the sticky scroll pin on mobile --- */
+    .image-reveal-section {
+        height: auto !important;
+        min-height: unset;
+        padding: 4rem 1.5rem;
+    }
+    .reveal-sticky {
+        position: relative !important;
+        height: auto !important;
+        padding: 2rem 0;
+    }
     .reveal-image-container {
-        width: 85vw !important;
-        height: 50vh !important;
+        width: 90vw !important;
+        height: 55vh !important;
         border-radius: 16px !important;
+        transform: none !important;
+    }
+    .reveal-image-container img {
+        transform: none !important;
     }
 
-    /* --- Services marquee --- */
-    .services-section { padding: 5rem 0; }
+    /* --- Services marquee: disable JS translateX, let text wrap --- */
+    .services-section { padding: 3rem 1.5rem; overflow: hidden; }
+    .service-row {
+        transform: none !important;
+        white-space: normal;
+        margin-bottom: 1rem;
+    }
     .service-text {
         font-size: clamp(1.5rem, 6vw, 3rem);
     }
@@ -921,14 +937,7 @@ h1, h2, h3 {
         gap: 1rem;
         text-align: center;
         padding: 0 1.5rem;
-    }
-    .footer-bottom {
         font-size: 0.8rem;
-    }
-
-    /* --- Horizontal parallax rows: disable translate on mobile --- */
-    .service-row {
-        transform: none !important;
     }
 }
 
