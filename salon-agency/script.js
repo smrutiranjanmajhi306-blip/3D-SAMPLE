@@ -178,11 +178,12 @@ window.addEventListener('load', () => {
     }, 600);
 });
 
-// --- About Section: 3D Mouse-Hover Tilt ---
+// --- About Section: 3D Mouse-Hover Tilt (desktop only) ---
+const isMobile = window.matchMedia('(hover: none) and (pointer: coarse)').matches;
 const aboutScene = document.getElementById('about3dScene');
 const aboutCard  = document.getElementById('aboutTiltCard');
 
-if (aboutScene && aboutCard) {
+if (!isMobile && aboutScene && aboutCard) {
     let cardTiltX = 0, cardTiltY = 0;
     let targetCardX = 0, targetCardY = 0;
 
@@ -190,7 +191,6 @@ if (aboutScene && aboutCard) {
         const rect = aboutScene.getBoundingClientRect();
         const cx = rect.left + rect.width / 2;
         const cy = rect.top + rect.height / 2;
-        // Map mouse to -1..1
         targetCardX = ((e.clientY - cy) / (rect.height / 2)) * -12;
         targetCardY = ((e.clientX - cx) / (rect.width  / 2)) *  12;
     });

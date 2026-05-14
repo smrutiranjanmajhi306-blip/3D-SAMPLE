@@ -22,6 +22,12 @@ body {
     cursor: none; /* Hide default cursor */
 }
 
+/* Restore cursor on touch/mobile */
+@media (hover: none) and (pointer: coarse) {
+    body { cursor: auto; }
+    .cursor-dot, .cursor-ring { display: none; }
+}
+
 /* Typography */
 h1, h2, h3 {
     font-family: var(--font-heading);
@@ -776,11 +782,175 @@ h1, h2, h3 {
 .delay-1 { transition-delay: 0.2s !important; }
 .delay-2 { transition-delay: 0.4s !important; }
 
-/* Responsive */
+/* ===== RESPONSIVE — TABLET ===== */
+@media (max-width: 1024px) {
+    .massive-text {
+        font-size: clamp(4rem, 14vw, 10rem);
+    }
+    .about-content {
+        padding: 3rem 2rem;
+    }
+}
+
+/* ===== RESPONSIVE — MOBILE ===== */
 @media (max-width: 768px) {
-    .navbar { padding: 1.5rem 2rem; }
-    .section-padding { padding: 6rem 2rem; }
-    .work-sticky-container { padding-left: 2rem; }
-    .work-card { flex: 0 0 300px; height: 400px; }
-    .footer-bottom { flex-direction: column; gap: 1rem; text-align: center; }
+
+    /* --- Global --- */
+    html, body { overflow-x: hidden; }
+    .navbar {
+        padding: 1.2rem 1.5rem;
+    }
+    .nav-links {
+        gap: 1.2rem;
+    }
+    .nav-links a {
+        font-size: 0.8rem;
+        letter-spacing: 1px;
+    }
+    .section-padding { padding: 5rem 1.5rem; }
+
+    /* --- Hero --- */
+    .hero {
+        perspective: none; /* Disable 3D perspective on mobile */
+    }
+    .hero-3d-stage {
+        transform: none !important; /* Disable mouse parallax rotation */
+    }
+    .massive-text {
+        font-size: clamp(3rem, 18vw, 6rem);
+        letter-spacing: 0;
+        white-space: nowrap;
+    }
+    .subtitle {
+        font-size: 0.75rem;
+        letter-spacing: 2px;
+        margin-top: 0.5rem;
+        padding: 0 1rem;
+        text-align: center;
+        white-space: normal;
+    }
+    .scroll-indicator {
+        bottom: 1.5rem;
+    }
+
+    /* Center element: smaller on mobile */
+    .center-vertical-element {
+        height: 55vh;
+    }
+
+    /* Side elements: smaller, push further to edges */
+    .blue-side-element {
+        width: 14vw;
+        opacity: 0.35;
+    }
+    .left-shape  { left: 0; top: 10%; }
+    .right-shape { right: 0; top: 20%; }
+
+    /* --- About section --- */
+    .about-3d-scene {
+        padding: 0 1rem;
+    }
+    .about-content {
+        padding: 2.5rem 1.5rem;
+        border-radius: 16px;
+        transform: none !important; /* Disable 3D tilt on mobile */
+    }
+    .about h2 {
+        font-size: clamp(1.6rem, 7vw, 2.5rem);
+    }
+    .about p {
+        font-size: 1rem;
+        line-height: 1.6;
+    }
+    .stats-container {
+        flex-direction: row;
+        flex-wrap: wrap;
+        gap: 1.5rem;
+        justify-content: center;
+    }
+    .stat-item {
+        flex: 1 1 40%;
+    }
+    .counter {
+        font-size: clamp(2rem, 10vw, 3rem);
+    }
+    .orb-1, .orb-2, .orb-3 {
+        display: none; /* Orbs off on mobile for performance */
+    }
+
+    /* --- Work cards --- */
+    .work-sticky-container { padding-left: 1.5rem; }
+    .work-card {
+        flex: 0 0 280px;
+        height: 360px;
+    }
+    .work-title {
+        font-size: clamp(1.5rem, 8vw, 3rem);
+        padding-left: 1.5rem;
+    }
+
+    /* --- Image Reveal --- */
+    .reveal-image-container {
+        width: 85vw !important;
+        height: 50vh !important;
+        border-radius: 16px !important;
+    }
+
+    /* --- Services marquee --- */
+    .services-section { padding: 5rem 0; }
+    .service-text {
+        font-size: clamp(1.5rem, 6vw, 3rem);
+    }
+
+    /* --- CTA Section --- */
+    .cta-section h2 {
+        font-size: clamp(1.8rem, 8vw, 3rem);
+        padding: 0 1rem;
+        text-align: center;
+        white-space: normal;
+        word-break: break-word;
+    }
+    .cta-btn {
+        padding: 1.2rem 2.5rem;
+        font-size: 0.95rem;
+    }
+
+    /* --- Footer --- */
+    .footer-bottom {
+        flex-direction: column;
+        gap: 1rem;
+        text-align: center;
+        padding: 0 1.5rem;
+    }
+    .footer-bottom {
+        font-size: 0.8rem;
+    }
+
+    /* --- Horizontal parallax rows: disable translate on mobile --- */
+    .service-row {
+        transform: none !important;
+    }
+}
+
+/* ===== RESPONSIVE — SMALL MOBILE (< 480px) ===== */
+@media (max-width: 480px) {
+    .massive-text {
+        font-size: clamp(2.8rem, 20vw, 5rem);
+    }
+    .logo {
+        font-size: 1.1rem;
+    }
+    .nav-links {
+        gap: 1rem;
+    }
+    .work-card {
+        flex: 0 0 240px;
+        height: 300px;
+    }
+    .cta-section h2 {
+        font-size: clamp(1.6rem, 9vw, 2.5rem);
+    }
+    .about-content {
+        padding: 2rem 1.2rem;
+    }
 }
