@@ -275,21 +275,21 @@ lenis.on('scroll', (e) => {
             layer.style.transform = `translateY(${yPos}px)`;
         });
 
-        // Services Horizontal Parallax
-        if (serviceSection && serviceRows.length) {
-            const rect = serviceSection.getBoundingClientRect();
-            if (rect.top < window.innerHeight && rect.bottom > 0) {
-                const scrolled = window.innerHeight - rect.top;
-                serviceRows.forEach(row => {
-                    const direction = parseInt(row.getAttribute('data-direction') || 1);
-                    row.style.transform = `translateX(${(scrolled * 0.5 * direction) - 300}px)`;
-                });
-            }
-        }
-
     } // end !isMobile
 
     // --- EFFECTS ENABLED ON BOTH DESKTOP AND MOBILE ---
+
+    // Services Horizontal Parallax
+    if (serviceSection && serviceRows.length) {
+        const rect = serviceSection.getBoundingClientRect();
+        if (rect.top < window.innerHeight && rect.bottom > 0) {
+            const scrolled = window.innerHeight - rect.top;
+            serviceRows.forEach(row => {
+                const direction = parseInt(row.getAttribute('data-direction') || 1);
+                row.style.transform = `translateX(${(scrolled * 0.5 * direction) - 300}px)`;
+            });
+        }
+    }
 
     // Horizontal Scroll (Work Section)
     if (workSection && workCarousel) {

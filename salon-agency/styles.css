@@ -663,6 +663,8 @@ h1, h2, h3 {
     white-space: nowrap;
     margin-bottom: 2rem;
     will-change: transform;
+    /* Start off-screen left so parallax scrolls them in */
+    transform: translateX(-300px);
 }
 
 .service-row h2 {
@@ -773,10 +775,25 @@ h1, h2, h3 {
 }
 
 /* Animation Classes */
+
+/* Base fade-up: hidden state */
+.fade-up, .slide-in-left {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 1s cubic-bezier(0.16, 1, 0.3, 1), transform 1s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Revealed state — ONLY for elements NOT driven by JS transforms */
+.fade-up.is-visible,
+.slide-in-left.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Generic is-visible for elements that only need opacity (like JS-driven transforms) */
 .is-visible {
     opacity: 1 !important;
-    transform: translate(0, 0) !important;
-    transition: opacity 1s cubic-bezier(0.16, 1, 0.3, 1), transform 1s cubic-bezier(0.16, 1, 0.3, 1);
+    transition: opacity 1s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .delay-1 { transition-delay: 0.2s !important; }
@@ -826,7 +843,6 @@ h1, h2, h3 {
         font-size: 0.75rem;
         letter-spacing: 2px;
         margin-top: 0.5rem;
-        padding: 0 1rem;
         padding: 0 1rem;
         text-align: center;
         white-space: normal;
@@ -887,15 +903,10 @@ h1, h2, h3 {
         border-radius: 16px;
     }
 
-    /* --- Services marquee: disable JS translateX, let text wrap --- */
-    .services-section { padding: 3rem 1.5rem; overflow: hidden; }
-    .service-row {
-        transform: none !important;
-        white-space: normal;
-        margin-bottom: 1rem;
-    }
-    .service-text {
-        font-size: clamp(1.5rem, 6vw, 3rem);
+    /* --- Services: keep horizontal parallax, just shrink text --- */
+    .services-section { padding: 3rem 0; overflow: hidden; }
+    .service-row h2 {
+        font-size: clamp(2rem, 7vw, 4rem);
     }
 
     /* --- CTA Section --- */
