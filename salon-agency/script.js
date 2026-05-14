@@ -275,36 +275,6 @@ lenis.on('scroll', (e) => {
             layer.style.transform = `translateY(${yPos}px)`;
         });
 
-        // Horizontal Scroll (Work Section)
-        if (workSection && workCarousel) {
-            const rect = workSection.getBoundingClientRect();
-            if (rect.top <= 0 && rect.bottom >= window.innerHeight) {
-                const progress = Math.abs(rect.top) / (rect.height - window.innerHeight);
-                const maxScroll = workCarousel.scrollWidth - window.innerWidth + window.innerWidth * 0.2;
-                workCarousel.style.transform = `translateX(-${progress * maxScroll}px)`;
-            }
-        }
-
-        // Image Reveal Scale
-        if (revealSection && revealImage && revealImgInside) {
-            const rect = revealSection.getBoundingClientRect();
-            if (rect.top <= 0 && rect.bottom >= window.innerHeight) {
-                const progress = Math.abs(rect.top) / (rect.height - window.innerHeight);
-                const currentWidth  = 30 + (progress * 70);
-                const currentHeight = 40 + (progress * 60);
-                const currentRadius = 20 - (progress * 20);
-                revealImage.style.width        = `${currentWidth}vw`;
-                revealImage.style.height       = `${currentHeight}vh`;
-                revealImage.style.borderRadius = `${currentRadius}px`;
-                revealImgInside.style.transform = `scale(${1.2 - (progress * 0.2)})`;
-            } else if (rect.top > 0) {
-                revealImage.style.width        = `30vw`;
-                revealImage.style.height       = `40vh`;
-                revealImage.style.borderRadius = `20px`;
-                revealImgInside.style.transform = `scale(1.2)`;
-            }
-        }
-
         // Services Horizontal Parallax
         if (serviceSection && serviceRows.length) {
             const rect = serviceSection.getBoundingClientRect();
@@ -318,6 +288,46 @@ lenis.on('scroll', (e) => {
         }
 
     } // end !isMobile
+
+    // --- EFFECTS ENABLED ON BOTH DESKTOP AND MOBILE ---
+
+    // Horizontal Scroll (Work Section)
+    if (workSection && workCarousel) {
+        const rect = workSection.getBoundingClientRect();
+        if (rect.top <= 0 && rect.bottom >= window.innerHeight) {
+            const progress = Math.abs(rect.top) / (rect.height - window.innerHeight);
+            const maxScroll = workCarousel.scrollWidth - window.innerWidth + window.innerWidth * 0.2;
+            workCarousel.style.transform = `translateX(-${progress * maxScroll}px)`;
+        }
+    }
+
+    // Image Reveal Scale
+    if (revealSection && revealImage && revealImgInside) {
+        const rect = revealSection.getBoundingClientRect();
+        if (rect.top <= 0 && rect.bottom >= window.innerHeight) {
+            const progress = Math.abs(rect.top) / (rect.height - window.innerHeight);
+            
+            // On mobile, start slightly larger so it's not a tiny dot
+            const startWidth = isMobile ? 80 : 30;
+            const startHeight = isMobile ? 40 : 40;
+            
+            const currentWidth  = startWidth + (progress * (100 - startWidth));
+            const currentHeight = startHeight + (progress * (100 - startHeight));
+            const currentRadius = 20 - (progress * 20);
+            
+            revealImage.style.width        = `${currentWidth}vw`;
+            revealImage.style.height       = `${currentHeight}vh`;
+            revealImage.style.borderRadius = `${currentRadius}px`;
+            revealImgInside.style.transform = `scale(${1.2 - (progress * 0.2)})`;
+        } else if (rect.top > 0) {
+            const startWidth = isMobile ? 80 : 30;
+            const startHeight = isMobile ? 40 : 40;
+            revealImage.style.width        = `${startWidth}vw`;
+            revealImage.style.height       = `${startHeight}vh`;
+            revealImage.style.borderRadius = `20px`;
+            revealImgInside.style.transform = `scale(1.2)`;
+        }
+    }
 });
 
 // --- Counters Animation ---

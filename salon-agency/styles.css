@@ -827,10 +827,11 @@ h1, h2, h3 {
         letter-spacing: 2px;
         margin-top: 0.5rem;
         padding: 0 1rem;
+        padding: 0 1rem;
         text-align: center;
         white-space: normal;
     }
-    .scroll-indicator { bottom: 1.5rem; }
+    .scroll-indicator { display: none !important; }
     .center-vertical-element { height: 55vh; }
     .blue-side-element { width: 14vw; opacity: 0.35; }
     .left-shape  { left: 0; top: 10%; }
@@ -855,27 +856,14 @@ h1, h2, h3 {
     .counter   { font-size: clamp(2rem, 10vw, 3rem); }
     .orb-1, .orb-2, .orb-3 { display: none; }
 
-    /* --- Work section: REMOVE the 400vh pin on mobile, let it flow normally --- */
-    .work-section {
-        height: auto !important;
-        min-height: unset;
-    }
+    /* --- Work section: Keep 400vh and sticky on mobile for horizontal scroll --- */
     .work-sticky-container {
-        position: relative !important;
-        top: auto !important;
-        height: auto !important;
-        overflow: visible !important;
-        padding: 2rem 1.5rem;
+        padding-left: 1.5rem;
     }
     .work-carousel {
-        overflow-x: auto;
-        -webkit-overflow-scrolling: touch;
-        padding-bottom: 1rem;
+        gap: 1.5rem;
         padding-right: 1.5rem;
-        transform: none !important;
-        scrollbar-width: none;
     }
-    .work-carousel::-webkit-scrollbar { display: none; }
     .work-card {
         flex: 0 0 280px;
         height: 360px;
@@ -886,25 +874,17 @@ h1, h2, h3 {
         margin-bottom: 1.5rem;
     }
 
-    /* --- Image Reveal: REMOVE the sticky scroll pin on mobile --- */
+    /* --- Image Reveal: Keep sticky scroll pin on mobile --- */
     .image-reveal-section {
-        height: auto !important;
-        min-height: unset;
-        padding: 4rem 1.5rem;
+        height: 150vh; /* Shorter scroll height on mobile so it's faster */
     }
     .reveal-sticky {
-        position: relative !important;
-        height: auto !important;
-        padding: 2rem 0;
+        height: 100vh;
     }
     .reveal-image-container {
-        width: 90vw !important;
-        height: 55vh !important;
-        border-radius: 16px !important;
-        transform: none !important;
-    }
-    .reveal-image-container img {
-        transform: none !important;
+        width: 80vw;
+        height: 40vh;
+        border-radius: 16px;
     }
 
     /* --- Services marquee: disable JS translateX, let text wrap --- */
